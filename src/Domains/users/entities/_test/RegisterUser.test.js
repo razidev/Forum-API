@@ -19,9 +19,11 @@ describe('a RegisterUser entities', () => {
       fullname: true,
       password: 'abc',
     };
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
+
   it('should throw error when username contains more than 50 character', () => {
     // Arrange
     const payload = {
@@ -32,6 +34,7 @@ describe('a RegisterUser entities', () => {
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.USERNAME_LIMIT_CHAR');
   });
+
   it('should throw error when username contains restricted character', () => {
     // Arrange
     const payload = {
@@ -39,9 +42,11 @@ describe('a RegisterUser entities', () => {
       fullname: 'dicoding',
       password: 'abc',
     };
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER');
   });
+
   it('should create registerUser object correctly', () => {
     // Arrange
     const payload = {
@@ -49,8 +54,10 @@ describe('a RegisterUser entities', () => {
       fullname: 'Dicoding Indonesia',
       password: 'abc',
     };
+
     // Action
     const { username, fullname, password } = new RegisterUser(payload);
+    
     // Assert
     expect(username).toEqual(payload.username);
     expect(fullname).toEqual(payload.fullname);
